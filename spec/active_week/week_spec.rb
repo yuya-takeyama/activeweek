@@ -102,6 +102,9 @@ RSpec.describe ActiveWeek::Week do
     end
 
     it 'raises ArgumentError if the comparison is unexpected object' do
+      # see: https://bugs.ruby-lang.org/issues/7688
+      skip if RUBY_VERSION.start_with?('2.2.')
+
       expect {
         described_class.new(2017, 1) == Time.now
       }.to raise_error ArgumentError
