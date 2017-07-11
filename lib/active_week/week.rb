@@ -53,5 +53,17 @@ module ActiveWeek
 
       first_day <=> other.first_day
     end
+
+    def ==(other)
+      raise ArgumentError.new("#{self.class} can't be compared with #{other.class}") unless other.is_a?(self.class)
+
+      first_day == other.first_day
+    end
+
+    alias eql? ==
+
+    def hash
+      year.hash ^ number.hash
+    end
   end
 end
