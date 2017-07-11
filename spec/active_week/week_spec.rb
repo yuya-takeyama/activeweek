@@ -244,6 +244,15 @@ RSpec.describe ActiveWeek::Week do
     end
   end
 
+  describe '.from_date' do
+    it 'creates a Week from a Date' do
+      expect(ActiveWeek::Week.from_date(Date.new(2017, 1, 1))).to eq ActiveWeek::Week.new(2016, 52)
+      expect(ActiveWeek::Week.from_date(Date.new(2017, 1, 2))).to eq ActiveWeek::Week.new(2017, 1)
+      expect(ActiveWeek::Week.from_date(Date.new(2017, 1, 8))).to eq ActiveWeek::Week.new(2017, 1)
+      expect(ActiveWeek::Week.from_date(Date.new(2017, 1, 9))).to eq ActiveWeek::Week.new(2017, 2)
+    end
+  end
+
   describe 'Using as keys of Hash' do
     it 'can be used as keys of Hash' do
       h = {}

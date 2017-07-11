@@ -14,6 +14,10 @@ module ActiveWeek
         date = Time.zone ? Time.zone.today : Date.today
         new(date.cwyear, date.cweek)
       end
+
+      def from_date(date)
+        new(date.cwyear, date.cweek)
+      end
     end
 
     def initialize(year, number)
