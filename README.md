@@ -7,7 +7,7 @@ ActiveSupport based Object Oriented API represents week
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'activeweek', git: 'https://github.com/yuya-takeyama/activeweek.git'
+gem 'activeweek'
 ```
 
 And then execute:
