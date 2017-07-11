@@ -243,4 +243,19 @@ RSpec.describe ActiveWeek::Week do
       Time.zone = orig_timezone
     end
   end
+
+  describe 'Using as keys of Hash' do
+    it 'can be used as keys of Hash' do
+      h = {}
+
+      h[ActiveWeek::Week.new(2017, 1)] = 1
+
+      h[ActiveWeek::Week.new(2020, 6)] = 1
+      h[ActiveWeek::Week.new(2020, 6)] += 1
+      h[ActiveWeek::Week.new(2020, 6)] += 1
+
+      expect(h[ActiveWeek::Week.new(2017, 1)]).to eq 1
+      expect(h[ActiveWeek::Week.new(2020, 6)]).to eq 3
+    end
+  end
 end
