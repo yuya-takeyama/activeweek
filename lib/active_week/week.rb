@@ -37,6 +37,8 @@ module ActiveWeek
       self.class.new(date.cwyear, date.cweek)
     end
 
+    alias succ next_week
+
     def prev_week
       date = first_day.prev_week
       self.class.new(date.cwyear, date.cweek)

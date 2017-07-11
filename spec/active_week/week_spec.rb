@@ -258,4 +258,24 @@ RSpec.describe ActiveWeek::Week do
       expect(h[ActiveWeek::Week.new(2020, 6)]).to eq 3
     end
   end
+
+  describe 'Using for building Range' do
+    it 'can be used for building Range' do
+      inclusive_range = (ActiveWeek::Week.new(2017, 1)..ActiveWeek::Week.new(2017, 10))
+      exclusive_range = (ActiveWeek::Week.new(2017, 1)...ActiveWeek::Week.new(2017, 10))
+      range_across_years = (ActiveWeek::Week.new(2017, 1)..ActiveWeek::Week.new(2020, 1))
+
+      expect(inclusive_range.to_a.size).to eq 10
+      expect(inclusive_range.to_a.first).to eq ActiveWeek::Week.new(2017, 1)
+      expect(inclusive_range.to_a.last).to eq ActiveWeek::Week.new(2017, 10)
+
+      expect(exclusive_range.to_a.size).to eq 9
+      expect(exclusive_range.to_a.first).to eq ActiveWeek::Week.new(2017, 1)
+      expect(exclusive_range.to_a.last).to eq ActiveWeek::Week.new(2017, 9)
+
+      expect(range_across_years.to_a.size).to eq 157
+      expect(range_across_years.to_a.first).to eq ActiveWeek::Week.new(2017, 1)
+      expect(range_across_years.to_a.last).to eq ActiveWeek::Week.new(2020, 1)
+    end
+  end
 end
